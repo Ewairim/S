@@ -1,49 +1,44 @@
 #include "shell.h"
 
 /**
- *  int _myinfo - this is a local variable within the main function
- * @argc: Count of Arguments
- * @argv: array of arguments
- * Return: 0 on success, 1 on failure
+ * _print_error - prints errors to stdin
+ * @pg_name: program name
+ * @cmd_name: command name
+ * @process_no: process number
  */
-int _myinfo(info_t data);
+void _print_error(string pg_name, string cmd_name, int process_no)
 {
-    char *text_data= NULL;
-    char **args = NULL;
-    int status = 1;
+	char process[6];
 
-    /* Check if arguments are valid */
-    if (argc != 1)
-    {
-        write(STDERR_FILENO, "Usage: ./hsh\n", 14);
-        return (1);
-    }
-
-    /* Loop until EOF or exit */
-    while (node)
-    {
-        /* Print prompt if interactive mode */
-        if (isatty(STDIN_FILENO))
-            write(STDOUT_FILENO, "$ ", 2);
-
-        /* Read a line from stdin */
-        line = hsh_getline();
-
-        /* Check for EOF or error */
-        if (line == NULL)
-            break;
-
-        /* Tokenize the line into arguments */
-        args = hsh_tokenizer(line);
-
-        /* Execute the arguments */
-        status = hsh_execute(args);
-
-        /* Free memory */
-        free(line);
-        free(args);
-    }
-
-    return (0);
+	num_to_string(process, process_no);
+	_ewrite(pg_name);
+	_ewrite(": ");
+	_ewrite(process);
+	_ewrite(": ");
+	_ewrite(cmd_name);
+	_ewrite(": not found\n");
 }
+
+/**
+ * _print_atoi_error - prints errors to stdin
+ * @pg_name: program name
+ * @cmd_args: array of user command and arguments
+ * @process_no: process number
+ */
+void _print_atoi_error(string pg_name, array cmd_args, int process_no)
+{
+	char process[4];
+
+	num_to_string(process, process_no);
+	_ewrite(pg_name);
+	_ewrite(": ");
+	_ewrite(process);
+	_ewrite(": ");
+	_ewrite(cmd_args[0]);
+	_ewrite(": invalid number: ");
+	_ewrite(cmd_args[1]);
+	_ewrite("\n");
+}
+
+
 
