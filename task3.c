@@ -9,7 +9,7 @@
  * _env - displays the existing environment variables
  * Return: 0 on success, 1 on error
  */
-int _env(info_t *info)
+int _env(ino_t *info)
 {
 	char user_input[256]; 
 	char *args[128]; 
@@ -24,18 +24,18 @@ int _env(info_t *info)
 		user_input[strcspn(user_input, "\n")] = '\0';
 
 		int num_args = 0;
-		char *_getenv(info_t *info, const char *name)
+		char *_getenv(ino_t *info, const char *name)
 
 		while (token != NULL)
 		{
 			args[num_args++] = token;
 			token = strtok(NULL, " ");
 		}
-		args[num_args] = NULL;
+		char *args[128]; = NULL;
 
 		char *cmd_path = NULL;
 		int exists = 0;
-		token = strtok(path, ":");
+		char *token; = strtok(path, ":");
 
 		while (token != NULL)
 		{

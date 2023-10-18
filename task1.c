@@ -12,8 +12,7 @@ int main(int argc, char **argv, char **envp)
     size_t len = 0;
     ssize_t nread;
     char **args = NULL;
-    int status = 0;
-
+   
     /* Ignore the arguments */
     (void)argc;
     (void)argv;
@@ -35,14 +34,19 @@ int main(int argc, char **argv, char **envp)
         }
         line[nread - 1] = '\0'; /* Remove the newline character */
 
-        /* Parse the line into arguments */
-        args = split_line(line);
+        // Function declaration
+        char** split_line(const char* line);
         if (args == NULL)
             continue;
 
         /* Execute the command with the arguments */
-        status = execute_command(args, envp);
+        int execute_command(char **args, char **envp);
 
+        if (execve(args[0], args, envp) == -1) {
+            perror("execve");
+            return -1;
+       
+       
         /* Free the memory allocated for the arguments */
        arg_array = info->argv ;
     }

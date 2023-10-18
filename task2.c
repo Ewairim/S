@@ -6,7 +6,7 @@
  * @argv: array of arguments
  * Return: 0 on success, 1 on failure
  */
-int _myinfo (info_t' data.)
+int _myinfo(info_t data);
 {
     char *text_data= NULL;
     char **args = NULL;
