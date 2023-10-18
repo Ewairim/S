@@ -12,10 +12,14 @@ int main(int argc, char **argv, char **envp)
     size_t len = 0;
     ssize_t nread;
     char **args = NULL;
-   
+    int status = 0;
+
     /* Ignore the arguments */
     (void)argc;
     (void)argv;
+    // Declaration of the signal_handler function
+    (void)ignal_handler(int signum);
+
 
     /* Print the prompt and wait for user input */
     signal(SIGINT, signal_handler); /* Handle Ctrl+C */
@@ -34,19 +38,14 @@ int main(int argc, char **argv, char **envp)
         }
         line[nread - 1] = '\0'; /* Remove the newline character */
 
-        // Function declaration
-        char** split_line(const char* line);
+        /* Parse the line into arguments */
+        args = split_line(line);
         if (args == NULL)
             continue;
 
         /* Execute the command with the arguments */
-        int execute_command(char **args, char **envp);
+        status = execute_command(args, envp);
 
-        if (execve(args[0], args, envp) == -1) {
-            perror("execve");
-            return -1;
-       
-       
         /* Free the memory allocated for the arguments */
        arg_array = info->argv ;
     }
