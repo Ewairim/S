@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SHELL_H
+#define SHELL_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -11,4 +11,4 @@
 int _myinfo(info_t *data);
 int main(int argc, char **argv, char **envp);
 int _env(info_t *info);
-#endif MAIN_H
+#endif SHELL_H
