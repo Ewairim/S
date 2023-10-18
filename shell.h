@@ -12,4 +12,4 @@
 int _myinfo(info_t *data);
 int main(int argc, char **argv, char **envp);
 int _env(info_t *info);
-#endif SHELL_H
+#endif
