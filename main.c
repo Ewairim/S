@@ -1,44 +1,24 @@
 #include "shell.h"
 
 /**
- * mymain - entry
- * @ac: arguements count
- * @av: arguements vector
+ * main - simple-shell
  *
- * Return: 0 on success, 1 on error
+ * Return: always 0
  */
-int mymain(int ac, char **av)
+int main(void)
 {
-	info_t info[] = { INFO_INIT };
-	int fd = 2;
+	char *input;
+	ssize_t bytes;
+	size_t len;
 
-	asm ("mov %1, %0\n\t"
-		"add $3, %0"
-		: "=r" (fd)
-		: "r" (fd));
-
-	if (ac == 2)
+	while (1)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
+		write(STDOUT_FILENO, "$ ", 2);
+		bytes = getline(&input, &len, stdin);
+		if (bytes == -1)
 		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				_eputs(av[0]);
-				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
-				exit(127);
-			}
-			return (EXIT_FAILURE);
+			exit(54);
 		}
-		info->readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, av);
-	return (EXIT_SUCCESS);
+	return (0);
 }
