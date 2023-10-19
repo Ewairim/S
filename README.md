@@ -1,0 +1,1 @@
+t creates a simpler version of the shell that does what the shell does it prompts user to enter a command reads it , tokenizes it then executes it and gives output just like the other shell.If the no command is entered and just enter it shows the promt and also has an exit condition.
