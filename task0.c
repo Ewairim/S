@@ -1,74 +1,74 @@
-#include "shell.h"
+#include"shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
- *
- * Return: 1 if interactive mode, 0 otherwise
- */
-int interactive(info_t *info)
+*interactive-returnstrueifshellisintermode
+*@info:structaddress
+*
+*Return:1ifinteractivemode,0otherwise
+*/
+intinteractive(info_t*info)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+return(isatty(STDIN_FILENO)&&info->readfd<=2);
 }
 
 /**
- * is_delim - checks if char is a delim
- * @c: the char to check
- * @delim: the delim string
- * Return: 1 if true, 0 if false
- */
-int is_delim(char c, char *delim)
+*is_delim-checksifcharisadelim
+*@c:thechartocheck
+*@delim:thedelimstring
+*Return:1iftrue,0iffalse
+*/
+intis_delim(charc,char*delim)
 {
-	while (*delim)
-		if (*delim++ == c)
-			return (1);
-	return (0);
+while(*delim)
+if(*delim++==c)
+return(1);
+return(0);
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
- */
+*_isalpha-checksforalphabeticcharacter
+*@c:Thecharactertoinput
+*Return:1ifcisalphabetic,0otherwise
+*/
 
-int _isalpha(int c)
+int_isalpha(intc)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	else
-		return (0);
+if((c>='a'&&c<='z')||(c>='A'&&c<='Z'))
+return(1);
+else
+return(0);
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
- */
+*_atoi-convertsastringtoaninteger
+*@s:thestringtobeconverted
+*Return:0ifnonumbersinstring,convertednumberotherwise
+*/
 
-int _atoi(char *s)
+int_atoi(char*s)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+inti,sign=1,flag=0,output;
+unsignedintresult=0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
-	{
-		if (s[i] == '-')
-			sign *= -1;
+for(i=0;s[i]!='\0'&&flag!=2;i++)
+{
+if(s[i]=='-')
+sign*=-1;
 
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
-		}
-		else if (flag == 1)
-			flag = 2;
-	}
+if(s[i]>='0'&&s[i]<='9')
+{
+flag=1;
+result*=10;
+result+=(s[i]-'0');
+}
+elseif(flag==1)
+flag=2;
+}
 
-	if (sign == -1)
-		output = -result;
-	else
-		output = result;
+if(sign==-1)
+output=-result;
+else
+output=result;
 
-	return (output);
+return(output);
 }
